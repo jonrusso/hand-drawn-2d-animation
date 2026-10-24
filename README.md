@@ -93,7 +93,7 @@ examples/bolhao/  the case study, with costs and every failure we hit
 Made something with it? [Share it](https://github.com/jonrusso/hand-drawn-2d-animation/issues/new?template=showcase.yml). Failures are as welcome as wins.
 
 ## Acknowledgements
-The look of this skill was studied from the work of **Tyrus Wong**, whose painted forests defined the look of Walt Disney Animation Studios' *Bambi* (1942), and from the hand-painted backgrounds of Disney's *Snow White and the Seven Dwarfs* (1937). They are credited here because they are where this style comes from. No frames, characters or names are used in prompts, and this project is not affiliated with or endorsed by Disney.
+The look of this skill was studied from the work of **Tyrus Wong**, whose painted forests defined the look of Walt Disney Animation Studios' *Bambi* (1942), and from the hand-painted backgrounds of Disney's *Snow White and the Seven Dwarfs* (1937). They are credited here because they are where this style comes from. No frames, characters or names are used in prompts, and this project is not affiliated with or endorsed by Disney. This repository contains no artwork from Tyrus Wong or Disney; its licenses cover only our own code, text and example images.
 
 Built with CapCut, the ChatGPT plugin, Codex and Seedance, and with open source: Video Depth Anything (Small, Apache 2.0), Anime2Sketch (MIT), anime-segmentation / isnet-anime (Apache 2.0), PyTorch, ONNX Runtime, OpenCV, FFmpeg, Pillow, NumPy. See [THIRD_PARTY_NOTICES.md](THIRD_PARTY_NOTICES.md).
 

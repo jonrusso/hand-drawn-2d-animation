@@ -47,7 +47,7 @@ O que os scripts conferem antes de qualquer gasto (`master_prompt.py check`): ci
 O caso completo, com custos e todos os erros que aconteceram: [examples/bolhao/CASE_STUDY.md](examples/bolhao/CASE_STUDY.md).
 
 ## Agradecimentos
-O visual desta skill foi estudado a partir da obra de **Tyrus Wong**, cujas florestas pintadas definiram o visual de *Bambi* (1942), da Walt Disney Animation Studios, e dos fundos pintados à mão de *Branca de Neve e os Sete Anões* (1937), da Disney. Eles estão creditados aqui porque é de onde vem esse estilo. Nenhum quadro, personagem ou nome entra nos prompts, e este projeto não tem vínculo nem aval da Disney.
+O visual desta skill foi estudado a partir da obra de **Tyrus Wong**, cujas florestas pintadas definiram o visual de *Bambi* (1942), da Walt Disney Animation Studios, e dos fundos pintados à mão de *Branca de Neve e os Sete Anões* (1937), da Disney. Eles estão creditados aqui porque é de onde vem esse estilo. Nenhum quadro, personagem ou nome entra nos prompts, e este projeto não tem vínculo nem aval da Disney. O repositório não contém nenhuma arte do Tyrus Wong ou da Disney; as licenças daqui valem só para o nosso código, textos e imagens de exemplo.
 
 Feito com CapCut, o plugin do ChatGPT, Codex e Seedance, e com open source: Video Depth Anything (Small, Apache 2.0), Anime2Sketch (MIT), anime-segmentation / isnet-anime (Apache 2.0), PyTorch, ONNX Runtime, OpenCV, FFmpeg, Pillow, NumPy.
 

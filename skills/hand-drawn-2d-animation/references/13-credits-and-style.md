@@ -8,6 +8,13 @@ The look this skill aims for was studied from the hand-painted feature animation
 
 They are credited here because this is where the style comes from. The skill never puts film, studio or artist names in generation prompts, ships no frames or characters from those films, and describes only technique: soft pencil line, flat character colour, painterly backgrounds, dark foreground, soft distance, light living in the world. This project is not affiliated with or endorsed by Disney.
 
+
+### Intellectual property
+- This repository contains no artwork, frames, characters or audio from Tyrus Wong or Disney. Only their names appear, as credit.
+- The licenses of this repository (Apache 2.0 for code, CC BY 4.0 for docs and our own example images) cover only our own material. They grant no rights over anyone else's work.
+- Studying and describing a style is fine. Reproducing protected characters, frames or designs is not, whether the use is personal or commercial.
+- When you share work made with this skill, keep the credit to the inspiration and keep the prompts free of film, studio and artist names.
+
 ## Tools
 CapCut, the ChatGPT plugin for CapCut, Codex and Seedance were used to plan, prompt and generate the example film (BOLHAO). Check each provider's current terms for commercial use of generated output.
 
