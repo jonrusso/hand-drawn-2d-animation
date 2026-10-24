@@ -1,0 +1,15 @@
+{
+  "name": "hand-drawn-2d-animation",
+  "owner": {"name": "russodev"},
+  "description": "Hand-drawn 2D animation workflow for AI video: story bible, storyboard, one-pass generation, QA and pencil animatic.",
+  "plugins": [
+    {
+      "name": "hand-drawn-2d-animation",
+      "source": "./",
+      "strict": false,
+      "description": "Plan, prompt, generate and check short 2D films that look hand-drawn, made with AI video models such as Seedance in CapCut.",
+      "version": "0.1.0",
+      "skills": ["./skills/hand-drawn-2d-animation"]
+    }
+  ]
+}

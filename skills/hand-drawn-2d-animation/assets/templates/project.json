@@ -1,0 +1,34 @@
+{
+  "schema_version": 1,
+  "project_name": "",
+  "status": "brief",
+  "master": {
+    "width": 854,
+    "height": 480,
+    "fps": 24
+  },
+  "direction": {
+    "character_exposure_frames": 2,
+    "camera_fps": 24,
+    "background": "locked_plates_with_parallax",
+    "finger_count": null
+  },
+  "approved_references": [],
+  "shots": [],
+  "jobs": [],
+  "deliverables": [],
+  "next_action": "Consolidate the brief and existing references",
+  "open_issues": [],
+  "decisions": [],
+  "production_policy": {
+    "default_unit": "editorially_coherent_film_or_act",
+    "same_failure_attempt_limit": 2,
+    "budget_credits": null,
+    "budget_status": "not_defined",
+    "pricing_source": "live_provider_quote",
+    "full_regeneration": "respect_user_strategy_and_live_budget",
+    "approved_material": "preserve",
+    "context_loading": "current_stage_only",
+    "sound_strategy": "continuous_master_music_independent_of_visual_blocks"
+  }
+}

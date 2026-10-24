@@ -1,0 +1,201 @@
+{
+  "project": "BOLHAO_example_single_take",
+  "genre": "acting",
+  "duration_s": 28,
+  "aspect_ratio": "16:9",
+  "resolution": "480p",
+  "use_timestamps": false,
+  "char_limit": 4000,
+  "style": "Hand-drawn 2D storybook animation: soft, slightly thick warm-brown pencil outlines, flat colors, no shading on faces, soft cheek blush; painterly backgrounds, dark foreground leaves, softer distant lake. Warm morning sun from the upper left. 16:9.",
+  "references": [
+    {
+      "id": "@Image1",
+      "role": "only the boy's face, hair, glasses, outfit and proportions",
+      "file": "boy_character_sheet.png"
+    },
+    {
+      "id": "@Image2",
+      "role": "only the look of the two companions",
+      "file": "companions_sheet.png"
+    },
+    {
+      "id": "@Image3",
+      "role": "only the gum pack design and label, which never change",
+      "file": "BOLHAO_pack.png"
+    },
+    {
+      "id": "@Image4",
+      "type": "storyboard",
+      "role": "storyboard frame of shot 1",
+      "file": "SB_01.png"
+    },
+    {
+      "id": "@Image5",
+      "type": "storyboard",
+      "role": "storyboard frame of shot 2",
+      "file": "SB_02.png"
+    },
+    {
+      "id": "@Image6",
+      "type": "storyboard",
+      "role": "storyboard frame of shot 3",
+      "file": "SB_03.png"
+    },
+    {
+      "id": "@Image7",
+      "type": "storyboard",
+      "role": "storyboard frame of shot 4",
+      "file": "SB_04.png"
+    },
+    {
+      "id": "@Image8",
+      "type": "storyboard",
+      "role": "storyboard frame of shot 5",
+      "file": "SB_05.png"
+    },
+    {
+      "id": "@Image9",
+      "type": "storyboard",
+      "role": "storyboard frame of shot 6",
+      "file": "SB_06.png"
+    }
+  ],
+  "characters": {
+    "boy": {
+      "block": "The boy from @Image1, about eight: dark curly hair, round black glasses, plum beret with two blue feathers, plum shirt, navy shorts, brown boots. Small child hands with exactly five fingers on each hand (four fingers plus one thumb), never four, never six.",
+      "has_hands": true
+    },
+    "companions": {
+      "block": "Agua and Luz from @Image2: a small cyan water-drop spirit with two round eyes, and a tiny golden star spark. Exactly two companions.",
+      "has_hands": false
+    }
+  },
+  "axis_rule": "Outdoors he always moves from screen left to screen right.",
+  "shots": [
+    {
+      "dur_s": 6,
+      "location": "forest_edge",
+      "setup": "A",
+      "screen_direction": "LR",
+      "framing": "Wide tracking shot",
+      "camera": "camera trucks right with him through the last leaves",
+      "action": "He is already walking right, hops a root and stops short at the lake; the pack from @Image3 rests on a mossy stump.",
+      "face_visible": false,
+      "end_frame": "he stands left, the stump with the pack right",
+      "cut": {
+        "type": "eyeline",
+        "reason": "as his eyes land on the pack"
+      }
+    },
+    {
+      "dur_s": 4,
+      "location": "shore",
+      "setup": "B",
+      "screen_direction": "LR",
+      "framing": "Medium shot at the stump",
+      "camera": "slow push-in",
+      "action": "He kneels, tears open one small wrapped piece and pops the pink pastille in; the big pack stays closed.",
+      "micro_actions": [
+        {
+          "hand": "right",
+          "verb": "tears the end of",
+          "object": "wrapper",
+          "count": "once"
+        }
+      ],
+      "face_visible": true,
+      "face": {
+        "cause": "the first taste surprises him",
+        "eyes": "his eyes widen and dart up",
+        "eyebrows": "one eyebrow lifts higher than the other",
+        "mouth": "lips closed, chewing twice"
+      },
+      "end_frame": "cheeks full, wrapper in his left hand",
+      "cut": {
+        "type": "action",
+        "reason": "as he draws a deep breath"
+      }
+    },
+    {
+      "dur_s": 5,
+      "location": "shore",
+      "setup": "C",
+      "screen_direction": "LR",
+      "framing": "Medium-wide shot on the path",
+      "camera": "slight backward drift",
+      "action": "Boots planted, he blows a bubble in two pulses with a pause between; the second makes it bigger than his torso and bends his knees.",
+      "face_visible": true,
+      "face": {
+        "cause": "the bubble keeps growing",
+        "eyes": "his eyes cross slightly to watch it",
+        "eyebrows": "his eyebrows rise",
+        "mouth": "a small sealed-lip smile growing"
+      },
+      "end_frame": "giant bubble at his lips, arms out for balance",
+      "cut": {
+        "type": "reaction",
+        "reason": "as a ripple opens on the lake behind him"
+      }
+    },
+    {
+      "dur_s": 6.5,
+      "location": "lake",
+      "setup": "A",
+      "screen_direction": "LR",
+      "framing": "Side tracking shot over the lake",
+      "camera": "the camera trucks right at his pace",
+      "action": "Agua rises from the water and Luz drifts down; lily pads rise under his steps, he bounces across, the bubble lifts him and he glides low as lotus buds open where Agua taps.",
+      "face_visible": false,
+      "end_frame": "he glides at center, a willow branch ahead at upper right",
+      "cut": {
+        "type": "action",
+        "reason": "as the bubble touches the branch"
+      }
+    },
+    {
+      "dur_s": 3.5,
+      "location": "lake",
+      "setup": "B",
+      "screen_direction": "LR",
+      "framing": "Side shot at water level",
+      "camera": "tilts down with the fall",
+      "action": "The bubble pops at the branch tip and shrinks onto his lips; he hangs a beat, then drops feet first and a drawn splash of rounded white and cyan shapes rises.",
+      "face_visible": true,
+      "face": {
+        "cause": "the bubble pops",
+        "eyes": "his eyes go wide",
+        "eyebrows": "eyebrows shoot up",
+        "mouth": "mouth closed"
+      },
+      "end_frame": "splash peak at frame center",
+      "cut": {
+        "type": "object",
+        "reason": "on the white splash filling the center"
+      }
+    },
+    {
+      "dur_s": 3,
+      "location": "bedroom",
+      "setup": "A",
+      "framing": "Medium shot in a morning bedroom, his beret on the bedpost",
+      "camera": "slow push-in",
+      "action": "He wakes in bed in purple pajamas, looks around, then down at a clearly darker damp patch on the blanket over his lap.",
+      "face_visible": true,
+      "face": {
+        "cause": "it was a dream and the blanket is damp",
+        "eyes": "his eyes slide sideways",
+        "eyebrows": "eyebrows knit",
+        "mouth": "lips pressed, cheeks blushing"
+      },
+      "end_frame": "his embarrassed sideways glance",
+      "cut": {
+        "type": "end",
+        "reason": ""
+      }
+    }
+  ],
+  "life": "He acts like a real child: whole body in every feeling, both hands on small things. Between actions he breathes, blinks; eyes lead the head; reactions land a half-beat late; hair and feathers settle after he stops.",
+  "constraints": "No dialogue, speech or voice. No text or watermark. Water and bubble are soft drawn shapes. Same identity and proportions in every shot.",
+  "sound": "Forest then lake ambience, wrapper tear, rubbery bubble swells, pad slaps, a sharp pop, a soft splash, bedroom tone.",
+  "note": "Generates 28 s; the 2 s packshot with the editable title is added in the edit (clean still with a slow push from 100% to 103%)."
+}

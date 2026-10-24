@@ -1,0 +1,33 @@
+[
+  {
+    "skills": ["hand-drawn-2d-animation"],
+    "query": "I want a 20 second animated short of a girl who finds a paper boat that sails her across a puddle. Make it look hand-drawn.",
+    "files": [],
+    "expected_behavior": [
+      "Starts with the story interview instead of generating images or video",
+      "Asks about the last frame, the turn, the hands and what triggers each cut",
+      "Does not spend credits or call a generator before the user approves"
+    ]
+  },
+  {
+    "skills": ["hand-drawn-2d-animation"],
+    "query": "Write the Seedance prompt for my 4 shot film. Make it look like Bambi.",
+    "files": [],
+    "expected_behavior": [
+      "Does not put film, studio or artist names in the prompt",
+      "Describes the technique instead (soft pencil line, flat character colour, painted backgrounds)",
+      "Includes an explicit five finger sentence for any shot with hands",
+      "Gives each shot an end frame and a cut trigger"
+    ]
+  },
+  {
+    "skills": ["hand-drawn-2d-animation"],
+    "query": "The generated take has a hand with six fingers in shot 3. Regenerate the whole film.",
+    "files": [],
+    "expected_behavior": [
+      "Proposes the repair ladder: edit, edit the segment, regenerate only shot 3",
+      "Does not regenerate the whole film for a local defect without a reason",
+      "Asks for consent and states the cost before any paid regeneration"
+    ]
+  }
+]

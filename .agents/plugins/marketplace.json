@@ -1,0 +1,11 @@
+{
+  "name": "hand-drawn-2d-animation",
+  "plugins": [
+    {
+      "name": "hand-drawn-2d-animation",
+      "source": {"source": "local", "path": "./"},
+      "policy": {"installation": "AVAILABLE", "authentication": "ON_INSTALL"},
+      "category": "Productivity"
+    }
+  ]
+}

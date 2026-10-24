@@ -1,0 +1,35 @@
+name: Showcase your film
+description: Share a short made with this skill
+title: "[Showcase] "
+labels: ["showcase"]
+body:
+  - type: input
+    id: link
+    attributes:
+      label: Link to the film
+      description: Instagram, TikTok, YouTube or a direct video link
+    validations:
+      required: true
+  - type: textarea
+    id: idea
+    attributes:
+      label: The story in one sentence
+    validations:
+      required: true
+  - type: input
+    id: tools
+    attributes:
+      label: Generator and editor used
+      placeholder: "Seedance in CapCut, 480p draft, 1 generation"
+  - type: textarea
+    id: learned
+    attributes:
+      label: What worked and what failed
+      description: Your notes help the next person. Failures are as useful as wins.
+  - type: checkboxes
+    id: rights
+    attributes:
+      label: Rights
+      options:
+        - label: I own this film and the music in it is licensed, and I allow it to be featured in this repository's showcase.
+          required: true

@@ -1,0 +1,7 @@
+interface:
+  display_name: "Hand-drawn 2D animation"
+  short_description: "Story bible, storyboard, one-pass AI video and QA for 2D shorts that look hand-drawn"
+  brand_color: "#00CAE0"
+  default_prompt: "Interview me about my story idea, then build the story bible, storyboard and master prompt. Ask before spending credits."
+policy:
+  allow_implicit_invocation: true

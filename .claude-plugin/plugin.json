@@ -1,0 +1,19 @@
+{
+  "name": "hand-drawn-2d-animation",
+  "description": "Hand-drawn 2D animation workflow for AI video.",
+  "author": {
+    "name": "russodev"
+  },
+  "license": "Apache-2.0",
+  "keywords": [
+    "animation",
+    "2d",
+    "storyboard",
+    "seedance",
+    "capcut",
+    "ai-video",
+    "animatic"
+  ],
+  "homepage": "https://github.com/jonrusso/hand-drawn-2d-animation",
+  "repository": "https://github.com/jonrusso/hand-drawn-2d-animation"
+}

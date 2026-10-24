@@ -1,0 +1,11 @@
+# Core: master_prompt.py, qa_take.py, fidelity.py, animatic.py and project.py use only the
+# Python standard library. ffmpeg and ffprobe must be on PATH for every media script.
+Pillow>=10.1        # timing_chart.py, lettering.py, breakdown_reel.py, compose_layers.py
+numpy>=1.24         # sketch_lines.py, pencil_animatic.py
+
+# Optional, only for the line-extraction scripts:
+# torch>=2.1            # sketch_lines.py (Anime2Sketch); uses Apple MPS when available
+# opencv-python>=4.8    # pencil_animatic.py
+# onnxruntime>=1.16     # pencil_animatic.py --style isnet (isnet-anime matte)
+
+# Tests: pip install pytest

@@ -1,0 +1,18 @@
+# model weights and caches (download from upstream, never commit)
+weights/
+*.pth
+*.pt
+*.bin
+*.onnx
+*.ckpt
+*.safetensors
+.cache/
+# outputs
+outputs/
+*.mov
+*.mp4
+!docs/**/*.mp4
+__pycache__/
+.pytest_cache/
+.DS_Store
+.venv/

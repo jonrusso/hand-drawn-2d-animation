@@ -1,0 +1,24 @@
+Hand-drawn 2D storybook animation: soft, slightly thick warm-brown pencil outlines, flat colors, no shading on faces, soft cheek blush; painterly backgrounds, dark foreground leaves, softer distant lake. Warm morning sun from the upper left. 16:9.
+
+@Image1: only the boy's face, hair, glasses, outfit and proportions
+@Image2: only the look of the two companions
+@Image3: only the gum pack design and label, which never change
+
+The boy from @Image1, about eight: dark curly hair, round black glasses, plum beret with two blue feathers, plum shirt, navy shorts, brown boots. Small child hands with exactly five fingers on each hand (four fingers plus one thumb), never four, never six.
+Agua and Luz from @Image2: a small cyan water-drop spirit with two round eyes, and a tiny golden star spark. Exactly two companions.
+
+Use @Image4 to @Image9 in order as keyframes, one per shot; they guide composition and pose, they are not panels to animate.
+CAMERA: exactly 6 shots joined by motivated hard cuts, no other cuts, no jump cuts. Each shot keeps a gentle drift, never a frozen frame. Outdoors he always moves from screen left to screen right.
+
+SCENE:
+1. Wide tracking shot, camera trucks right with him through the last leaves. He is already walking right, hops a root and stops short at the lake; the pack from @Image3 rests on a mossy stump. On screen at end: he stands left, the stump with the pack right. Cut to shot 2 as his eyes land on the pack.
+2. Medium shot at the stump, slow push-in. He kneels, tears open one small wrapped piece and pops the pink pastille in; the big pack stays closed. His right hand tears the end of the wrapper once. Because the first taste surprises him: first his eyes widen and dart up, then one eyebrow lifts higher than the other, then lips closed, chewing twice. On screen at end: cheeks full, wrapper in his left hand. Cut to shot 3 as he draws a deep breath.
+3. Medium-wide shot on the path, slight backward drift. Boots planted, he blows a bubble in two pulses with a pause between; the second makes it bigger than his torso and bends his knees. Because the bubble keeps growing: first his eyes cross slightly to watch it, then his eyebrows rise, then a small sealed-lip smile growing. On screen at end: giant bubble at his lips, arms out for balance. Cut to shot 4 as a ripple opens on the lake behind him.
+4. Side tracking shot over the lake, the camera trucks right at his pace. Agua rises from the water and Luz drifts down; lily pads rise under his steps, he bounces across, the bubble lifts him and he glides low as lotus buds open where Agua taps. On screen at end: he glides at center, a willow branch ahead at upper right. Cut to shot 5 as the bubble touches the branch.
+5. Side shot at water level, tilts down with the fall. The bubble pops at the branch tip and shrinks onto his lips; he hangs a beat, then drops feet first and a drawn splash of rounded white and cyan shapes rises. Because the bubble pops: first his eyes go wide, then eyebrows shoot up, then mouth closed. On screen at end: splash peak at frame center. Cut to shot 6 on the white splash filling the center.
+6. Medium shot in a morning bedroom, his beret on the bedpost, slow push-in. He wakes in bed in purple pajamas, looks around, then down at a clearly darker damp patch on the blanket over his lap. Because it was a dream and the blanket is damp: first his eyes slide sideways, then eyebrows knit, then lips pressed, cheeks blushing. On screen at end: his embarrassed sideways glance.
+
+He acts like a real child: whole body in every feeling, both hands on small things. Between actions he breathes, blinks; eyes lead the head; reactions land a half-beat late; hair and feathers settle after he stops.
+
+No dialogue, speech or voice. No text or watermark. Water and bubble are soft drawn shapes. Same identity and proportions in every shot.
+Sound: Forest then lake ambience, wrapper tear, rubbery bubble swells, pad slaps, a sharp pop, a soft splash, bedroom tone. No music.
