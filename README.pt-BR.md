@@ -44,6 +44,8 @@ entrevista ─▶ bíblia ─▶ planos + storyboard ─▶ prompt mestre ─▶
 
 O que os scripts conferem antes de qualquer gasto (`master_prompt.py check`): cinco dedos escritos por extenso em toda mão, uma causa para toda mudança de rosto, um motivo para todo corte, nenhum enquadramento repetido em sequência, nenhuma quebra de direção de tela, nenhuma palavra que transforme água desenhada em vidro, nenhum nome de filme ou estúdio, e o limite de caracteres do prompt.
 
+**O que o exemplo prova e o que não prova.** O filme aprovado do BOLHÃO saiu de uma geração única de 30 s com o prompt integral v03 (`assets/examples/bolhao_v03_integral_prompt.txt`), que usa faixas de tempo, gera a própria trilha e faz o packshot dentro da geração. O master 1080p são duas regenerações de 15 s desse take. O `bolhao_30s_plan.json` é o método aplicado depois e ainda não foi gerado. Os dois estão publicados para você comparar.
+
 O caso completo, com custos e todos os erros que aconteceram: [examples/bolhao/CASE_STUDY.md](examples/bolhao/CASE_STUDY.md).
 
 ## Agradecimentos

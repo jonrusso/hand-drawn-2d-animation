@@ -11,7 +11,7 @@
 | Character | three tries: a realistic sheet, a storybook version in a green tunic (dropped: too close to a well-known character), a final plum costume of our own | image generation in CapCut / ChatGPT |
 | Bible | forest and lake place sheet, gum pack object sheet | same |
 | Storyboard | about a dozen keyframes, animatic, pose guide with a timing chart | same, plus `animatic.py`, `timing_chart.py` |
-| Generation | full 30 s draft in one pass, 480p, Seedance 2.5 inside CapCut, driven by Codex through the CapCut plugin | CapCut plugin |
+| Generation | full 30 s draft in one pass, 480p, Seedance 2.5 inside CapCut, driven by Codex through the CapCut plugin, from the integral v03 prompt (whole-second time ranges, its own score, product shot inside the generation) | CapCut plugin |
 | Repair | a 4 s localized fix for the bubble pop | CapCut plugin |
 | Finish | 1080p as two 15 s acts joined at a story beat, continuous master audio | Seedance 2 in CapCut |
 | Extras | depth map, pencil animatic, 9:16 breakdown reel | Video Depth Anything, Anime2Sketch, isnet-anime, FFmpeg |
@@ -19,7 +19,8 @@
 ## Numbers (historical, not a price list)
 - 30 s draft: 2,880 credits. 4 s repair: 384 credits.
 - Depth map: 720 frames in about 2 minutes on a laptop GPU, zero credits.
-- Master prompt: 3,996 of 4,000 characters, six shots.
+- Prompt that made the film: integral v03, 4,142 characters (accepted, so the checker's 4,000 limit is a default, not a fact).
+- Method example plan: 3,996 characters, six shots. Applied afterwards, not generated yet.
 
 ## What failed and what we changed
 | Failure | Fix |
@@ -28,13 +29,14 @@
 | Feet sliding, geography changing on a bridge, a scene change mid-breath | fewer events per generation, fixed layout per place |
 | Paper left on the ground, hands missing while parting leaves | written as explicit micro-actions with hand, object, verb and count |
 | A 16:9 request failing repeatedly (credits returned) | one attempt with Auto ratio succeeded; record the ratio actually used |
-| One black frame at the seam of the two acts | join on the shorter of video stream and container duration |
+| One black frame at the seam of the two acts | join by frame count, never by container duration; `qa_take.py` now lists black frames |
+| The generated tagline shipped misspelled ("tambên" for "também") through approval, finishing and master | typed text always goes in the edit as editable text; QA reads every word on screen against the script |
 | Pencil animatic too faded, too detailed, too many drawings | simplify the shot first, extract lines, mask the character, hold drawings at 12 per second |
 | Labels cut off on phones | Instagram Reels crops about 97 px each side on tall screens; keep text between x = 120 and 960 |
 | A soft fade into the CTA felt weak | hard cut on the story beat (the bubble pops), extend after the cut instead |
 
 ## Files
-- Plan and prompt: [`skills/hand-drawn-2d-animation/assets/examples/`](../../skills/hand-drawn-2d-animation/assets/examples/)
+- Method plan, its prompt, and the v03 prompt that made the film: [`skills/hand-drawn-2d-animation/assets/examples/`](../../skills/hand-drawn-2d-animation/assets/examples/)
 - Frames used in the README: [`docs/images/`](../../docs/images/)
 
 The character, the gum brand and the story are original to this project and are offered as an example under CC BY 4.0.

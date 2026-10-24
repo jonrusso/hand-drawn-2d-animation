@@ -19,10 +19,14 @@ BLOCKED_VISUAL = [
     "solid cone", "photorealistic water", "morph", "seamlessly becomes",
 ]
 # Film, studio and director names: describe the technique, never the studio or the film.
+# The credited lineage (Bambi, Snow White, Tyrus Wong) is blocked too: credits live in the README, never in prompts.
+# Peter Pan: an early BOLHAO costume (green tunic, feathered cap) read as that character and was redesigned.
 BLOCKED_NAMES = [
     "ghibli", "miyazaki", "ponyo", "pixar", "disney", "monsters, inc", "monsters inc",
     "sulley", "boo", "dreamworks", "studio", "in the style of",
+    "bambi", "snow white", "seven dwarfs", "tyrus wong", "peter pan", "tinker bell", "neverland",
 ]
+MAX_IMAGES_HINT = 9  # Seedance 2.0 takes at most 9 reference images; other surfaces differ, set max_reference_images
 SOFT_TRANSITIONS = ["fade", "dissolve", "crossfade", "cross-fade"]
 CUT_TYPES = {
     "action": "on the action",
@@ -61,7 +65,19 @@ def check(p):
     elif mean < 4.5 and p.get("genre", "acting") == "acting":
         warnings.append(f"mean of {mean:.1f}s per shot: for acting, sources suggest 3 to 5 shots in 30 s")
     if dur > 15 and not p.get("use_timestamps"):
-        warnings.append("long generation without time bands: risk of the action bunching at the start; run the timestamp A/B test before adopting")
+        warnings.append("long generation without time bands: risk of the action bunching at the start "
+                        "(the approved BOLHAO one-pass take used whole-second ranges); run the timestamp A/B test before adopting")
+
+    refs = p.get("references", [])
+    boards = [r for r in refs if r.get("type") == "storyboard"]
+    if boards and len(boards) != len(shots):
+        errors.append(f"{len(boards)} storyboard keyframes for {len(shots)} shots: the prompt promises one keyframe per shot")
+    images = [r for r in refs if r.get("id", "").lower().startswith("@image")]
+    limit_images = p.get("max_reference_images")
+    if limit_images and len(images) > int(limit_images):
+        errors.append(f"{len(images)} reference images, the surface accepts {limit_images}")
+    elif not limit_images and len(images) > MAX_IMAGES_HINT:
+        warnings.append(f"{len(images)} reference images: Seedance 2.0 accepts {MAX_IMAGES_HINT}; set max_reference_images for your surface")
 
     numbers = {3: "three", 4: "four", 5: "five", 6: "six"}
     for name, c in p["characters"].items():
@@ -157,7 +173,8 @@ def build(p):
         t += float(x["dur_s"])
         sentence = [f"{i}. {head}{x['framing']}, {x['camera']}. {x['action'].strip()}"]
         for m in x.get("micro_actions", []):
-            sentence.append(f"His {m['hand']} hand {m['verb']} the {m['object']} {m.get('count', '')}".strip() + ".")
+            owner = m.get("owner", p.get("possessive", "His"))
+            sentence.append(f"{owner} {m['hand']} hand {m['verb']} the {m['object']} {m.get('count', '')}".strip() + ".")
         f = x.get("face") if x.get("face_visible") else None
         if f:
             pieces = [f.get(k) for k in FACE_PARTS if f.get(k)]
@@ -171,7 +188,9 @@ def build(p):
     parts.append(p["life"].strip())
     parts.append("")
     parts.append(p["constraints"].strip())
-    parts.append(f"Sound: {p['sound'].strip()} No music.")
+    # One continuous score from a single whole-film pass can serve as the master track (BOLHAO did);
+    # scores from separate generations never stitch, so blocks keep "No music".
+    parts.append(f"Sound: {p['sound'].strip()}" + ("" if p.get("music_in_generation") else " No music."))
     return "\n".join(parts).strip() + "\n"
 
 

@@ -7,7 +7,8 @@
 4. Fixed prompt blocks
 5. Board prompts P1 to P6
 6. Place and object sheets
-7. Checklist
+7. Originality check
+8. Checklist
 
 ## 1. What the bible contains
 One character sheet per character, one place sheet per location, one object sheet per hero object. These images become the references the video model uses to keep identity, one role per reference. Generate in the image tool of your choice (for example the ChatGPT plugin in CapCut), 16:9, plain paper background, no text or watermark. One board per generation; check head height and hands before the next one. Approve each sheet before moving on.
@@ -70,10 +71,14 @@ Each one is `[STYLE] + [CHARACTER] + the board text`.
 Place: the geography (what is left, right, behind), the path the character takes, the light direction, a foreground layer (darker, more contrast), a soft distant layer. Painted, selective detail, soft contrast in the distance.
 Object: the hero object from several angles with its exact design and label. The packaging never changes design, so it gets its own reference. Objects are landmarks: they stay in the same place from every angle.
 
-## 7. Checklist
+## 7. Originality check
+Before approving a character, ask: does it read as a famous character? BOLHAO's second version (green tunic, feathered cap) did, even with no name in the prompt; a video job with that sheet failed with credits returned, and the plugin chat blamed copyright (never confirmed). The fix was a new costume of its own (plum beret, two blue feathers, plum shirt) on the same face. A colour swap or a missing name is not a licence. A real person's likeness (here, the creator as a child) needs that person's consent, and the age in every sheet must match the story: an "adult waking up" frame had to be redone as a child.
+
+## 8. Checklist
+- [ ] Reads as its own character, not as a famous one
 - [ ] Same head height in all five turnaround views
 - [ ] Hands match the age and hold the story objects, five fingers in every drawing
 - [ ] Eight states, each with a written cause
 - [ ] Acting repertoire filled, with at least one physical mistake and one imitation
 - [ ] Colour sheet with a line colour per area
-- [ ] Clean stills: no stamp, no text inside the image
+- [ ] Clean stills: no stamp, no text inside the image, never a frame taken from a generated video

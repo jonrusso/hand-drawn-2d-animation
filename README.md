@@ -55,14 +55,18 @@ What the scripts check before you spend anything (`master_prompt.py check`): fiv
 ## What is inside
 ```
 skills/hand-drawn-2d-animation/
-  SKILL.md        workflow and the 10 rules that change outcomes
+  SKILL.md        workflow and the 12 rules that change outcomes
   references/     13 files: interview, story bible, storyboard, acting, master prompt, generation,
-                  QA and repair, finishing, depth map, pencil animatic, breakdown reel, sound, credits
-  scripts/        11 local tools: prompt checker and builder, animatic, take QA, fidelity check,
-                  timing chart, sketch lines, pencil animatic, breakdown reel, lettering, layers, project
-  assets/         templates and the BOLHAO example plan and prompt
+                  QA and repair (22 real defects), finishing, depth map, pencil animatic,
+                  breakdown reel, sound, credits
+  scripts/        12 local tools: prompt checker and builder, animatic, take QA, fidelity check,
+                  depth map, timing chart, sketch lines, pencil animatic, breakdown reel, lettering,
+                  layers, project
+  assets/         templates, the BOLHAO example plan and prompt, and the v03 prompt that made the film
 examples/bolhao/  the case study, with costs and every failure we hit
 ```
+
+**What the example proves and what it does not.** The approved BOLHAO film came from one 30 s pass of the integral v03 prompt (`assets/examples/bolhao_v03_integral_prompt.txt`), which uses whole-second time ranges, its own continuous score and the product shot inside the generation. The 1080p master is two 15 s regenerations of that take. `bolhao_30s_plan.json` is this method applied afterwards and has not been generated yet. Both are published so you can compare.
 
 ## Support
 | Area | Status |

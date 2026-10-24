@@ -9,7 +9,7 @@ jobs:
         with:
           python-version: "3.12"
       - run: sudo apt-get update && sudo apt-get install -y ffmpeg
-      - run: pip install pillow numpy pytest
+      - run: pip install pillow numpy pytest opencv-python-headless
       - run: python -m pytest -q tests
       - name: no personal paths or secrets
         run: |

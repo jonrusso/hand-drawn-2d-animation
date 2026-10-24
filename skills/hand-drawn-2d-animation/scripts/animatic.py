@@ -33,8 +33,11 @@ def main():
         p = json.load(fh)
     tmp = tempfile.mkdtemp(prefix="animatic_")
     parts = []
+    t = 0.0
     for i, x in enumerate(p["shots"], 1):
-        frames = max(1, round(float(x["dur_s"]) * 24))
+        # round the running cut time, not each shot, so the cuts land where qa_take.py expects them
+        frames = max(1, round((t + float(x["dur_s"])) * 24) - round(t * 24))
+        t += float(x["dur_s"])
         out = os.path.join(tmp, f"p{i:02d}.mp4")
         zoom = f"zoompan=z='1+0.03*on/{frames}':x='iw/2-(iw/zoom/2)':y='ih/2-(ih/zoom/2)':d={frames}:s=1280x720:fps=24"
         subprocess.run(["ffmpeg", "-v", "error", "-y", "-loop", "1", "-i", find_frame(folder, i), "-vf",

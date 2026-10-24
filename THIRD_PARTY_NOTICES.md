@@ -13,5 +13,6 @@ This repository does not vendor third-party code or model weights. The scripts c
 | FFmpeg | LGPL 2.1+ (some builds GPL) | https://ffmpeg.org |
 | Pillow | HPND | https://python-pillow.org |
 | NumPy | BSD-3-Clause | https://numpy.org |
+| Demucs / HTDemucs (diagnostic only, see the sound reference) | MIT | https://github.com/facebookresearch/demucs |
 
 CapCut, ChatGPT, Codex and Seedance are trademarks of their respective owners and are named only to describe the tools used. This project is not affiliated with or endorsed by them.

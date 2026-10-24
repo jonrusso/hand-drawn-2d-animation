@@ -100,7 +100,8 @@ def test_micro_action_in_wide_shot_fails(plan):
     assert any("wide shot" in e for e in master_prompt.check(r)[0])
 
 
-@pytest.mark.parametrize("name", ["Ghibli", "Miyazaki", "Pixar", "Disney", "DreamWorks", "in the style of"])
+@pytest.mark.parametrize("name", ["Ghibli", "Miyazaki", "Pixar", "Disney", "DreamWorks", "in the style of",
+                                  "Bambi", "Snow White", "Tyrus Wong", "Peter Pan"])
 def test_film_studio_director_names_fail(plan, name):
     r = copy.deepcopy(plan)
     r["style"] += f" Like {name}."
@@ -111,6 +112,37 @@ def test_timestamps_blocked_unless_enabled(plan):
     r = copy.deepcopy(plan)
     r["shots"][0]["action"] += " At 0:03 he stops."
     assert any("timestamp" in e for e in master_prompt.check(r)[0])
+
+
+def test_micro_action_follows_the_character_possessive(plan):
+    assert "His right hand tears" in master_prompt.build(plan)
+    r = copy.deepcopy(plan)
+    r["possessive"] = "Her"
+    txt = master_prompt.build(r)
+    assert "Her right hand tears" in txt and "His right hand" not in txt
+
+
+def test_keyframe_count_must_match_shots(plan):
+    r = copy.deepcopy(plan)
+    r["references"] = [x for x in r["references"] if x["id"] != "@Image9"]
+    assert any("storyboard keyframes" in e for e in master_prompt.check(r)[0])
+
+
+def test_reference_image_limit(plan):
+    assert not any("reference images" in w for w in master_prompt.check(plan)[1])  # nine images: at the hint
+    r = copy.deepcopy(plan)
+    r["max_reference_images"] = 8
+    assert any("reference images" in e for e in master_prompt.check(r)[0])
+    r = copy.deepcopy(plan)
+    r["references"].append({"id": "@Image10", "role": "only the lake", "file": "lake.png"})
+    assert any("reference images" in w for w in master_prompt.check(r)[1])
+
+
+def test_music_in_generation_drops_no_music(plan):
+    assert master_prompt.build(plan).rstrip().endswith("No music.")
+    r = copy.deepcopy(plan)
+    r["music_in_generation"] = True
+    assert "No music." not in master_prompt.build(r)
 
 
 def test_cli_check_build_storyboard(tmp_path, plan):
@@ -157,6 +189,19 @@ def test_qa_finds_the_five_cuts(tmp_path, synthetic_take):
     assert out.stdout.count("| ok |") == 5
     assert (tmp_path / "qa" / "QA.md").is_file()
     assert len(list((tmp_path / "qa").glob("shot_*.jpg"))) == 6
+    assert "## Black frames\n\n- none" in out.stdout and "band-limited" not in out.stdout
+
+
+@needs_ffmpeg
+def test_qa_flags_black_seam_and_band_limited_audio(tmp_path, synthetic_take):
+    """The BOLHAO act seam left one black frame; Seedance 2.5 native audio came at 32 kHz."""
+    take = tmp_path / "seam.mp4"
+    ffmpeg("-i", synthetic_take, "-vf", "drawbox=x=0:y=0:w=iw:h=ih:color=black:t=fill:enable='eq(n,240)'",
+           "-c:v", "libx264", "-c:a", "aac", "-ar", "32000", take)
+    out = script("qa_take.py", take, EXAMPLE, tmp_path / "qa")
+    assert out.returncode == 0, out.stderr
+    assert " s (1 frame(s)): check the seam" in out.stdout and "32000 Hz (band-limited" in out.stdout
+    assert "1 black run(s)" in out.stdout
 
 
 @needs_ffmpeg
@@ -188,6 +233,18 @@ def test_animatic_holds_each_board_for_its_shot(tmp_path, plan):
     info = probe_frames(out)
     assert int(info["nb_read_frames"]) == sum(round(s["dur_s"] * 24) for s in plan["shots"])
     assert (info["width"], info["height"]) == (1280, 720)
+
+
+@needs_ffmpeg
+def test_animatic_does_not_drift_on_fractional_durations(tmp_path):
+    # per-shot rounding gave 3 x round(24.72) = 75 frames; the cuts belong at round(3.09 * 24) = 74
+    p = {"shots": [{"dur_s": 1.03}] * 3}
+    (tmp_path / "p.json").write_text(json.dumps(p))
+    for i in range(1, 4):
+        Image.new("RGB", (64, 36), (60 * i, 80, 160)).save(tmp_path / f"SB_{i:02d}.png")
+    out = tmp_path / "a.mp4"
+    assert script("animatic.py", tmp_path / "p.json", tmp_path, out).returncode == 0
+    assert int(probe_frames(out)["nb_read_frames"]) == 74
 
 
 # ---------------------------------------------------------------- project.py and compose_layers.py
@@ -254,6 +311,15 @@ def test_project_ledger_and_layer_compositing(tmp_path):
     m["deliverables"] = [{"file": "no.mp4"}]
     (root / "manifest.json").write_text(json.dumps(m))
     assert script("project.py", "verify", root).returncode != 0
+
+    # a finish at another size passes when it declares its size, and fails against the draft master otherwise
+    m["master"] = {"width": 854, "height": 480, "fps": 24}
+    m["deliverables"] = [{"file": "08_delivery/test.mp4"}]
+    (root / "manifest.json").write_text(json.dumps(m))
+    assert script("project.py", "verify", root).returncode != 0
+    m["deliverables"] = [{"file": "08_delivery/test.mp4", "width": 128, "height": 72}]
+    (root / "manifest.json").write_text(json.dumps(m))
+    assert script("project.py", "verify", root).returncode == 0
 
 
 def test_project_cache_key_is_order_independent(tmp_path):
@@ -335,3 +401,22 @@ def test_pencil_animatic_explains_missing_isnet_model(tmp_path):
     r = script("pencil_animatic.py", "film.mp4", "depth.mp4", "out.mp4", "--style", "isnet", "--lines", "l.mp4")
     assert r.returncode == 2
     assert "huggingface.co/skytnt/anime-seg" in r.stdout and "isnetis.onnx" in r.stdout
+
+
+def test_pencil_animatic_keeps_pink_only_when_asked():
+    cv2 = pytest.importorskip("cv2")
+    np = pytest.importorskip("numpy")
+    import pencil_animatic
+    hsv = cv2.cvtColor(np.full((4, 4, 3), (180, 60, 230), np.uint8), cv2.COLOR_BGR2HSV)  # saturated pink, BGR
+    assert not pencil_animatic.pink_mask(hsv).any()
+    pencil_animatic.KEEP_PINK = True
+    try:
+        assert pencil_animatic.pink_mask(hsv).all()
+    finally:
+        pencil_animatic.KEEP_PINK = False
+
+
+def test_depth_map_explains_missing_video_depth_anything(tmp_path):
+    r = script("depth_map.py", tmp_path / "no_repo", "film.mp4", tmp_path / "out", "--cuts", "0,24")
+    assert r.returncode == 2
+    assert "github.com/DepthAnything/Video-Depth-Anything" in r.stdout and "video_depth_anything_vits.pth" in r.stdout

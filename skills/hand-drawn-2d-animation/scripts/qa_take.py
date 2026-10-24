@@ -5,7 +5,8 @@ Usage:
   python3 qa_take.py take.mp4 plan.json output_folder
 
 Measures: real cuts against planned cuts (0.5 s tolerance), extra cuts (dissolves, jumps),
-frozen frames longer than 8 frames, audio drops. Writes a contact sheet per shot and the
+frozen frames longer than 8 frames, black frames, audio drops, resolution and audio sample rate.
+Writes a contact sheet per shot and the
 before/after frame strip of every cut, to check hands, face and screen axis.
 It does not approve anatomy or acting: that is a human review, guided by the generated QA.md.
 Requires ffmpeg and ffprobe; Python standard library only.
@@ -44,6 +45,29 @@ def real_cuts(fr, rate, threshold=28.0):
         if not merged or p - merged[-1] > 6:
             merged.append(p)
     return [round(p / rate, 3) for p in merged], d
+
+
+def black_frames(fr, rate, limit=6):
+    """Runs of near-black frames. BOLHAO had one at the seam of two acts (video stream shorter than the container)."""
+    n = W * H
+    res, start = [], None
+    for i, f in enumerate(fr + [bytes([255]) * n]):
+        if sum(f) / n < limit:
+            start = i if start is None else start
+        elif start is not None:
+            res.append((round(start / rate, 2), i - start))
+            start = None
+    return res
+
+
+def streams(video):
+    """Video size and audio sample rate. Native audio at 32 kHz is band-limited to 16 kHz and sounds muffled."""
+    out = subprocess.run(["ffprobe", "-v", "error", "-show_entries", "stream=codec_type,width,height,sample_rate",
+                          "-of", "json", video], capture_output=True, text=True).stdout
+    s = json.loads(out or "{}").get("streams", [])
+    v = next((x for x in s if x.get("codec_type") == "video"), {})
+    a = next((x for x in s if x.get("codec_type") == "audio"), {})
+    return v.get("width"), v.get("height"), int(a["sample_rate"]) if a.get("sample_rate") else None
 
 
 def holds(d, rate, minimum=9):
@@ -123,7 +147,10 @@ def main():
     for x in p["shots"][:-1]:
         t += float(x["dur_s"])
         planned.append(round(t, 3))
-    lines = ["# Take QA", "", f"File: `{video}`  ", f"Duration: {dur:.2f} s at {rate:g} fps; planned {p['duration_s']} s.", ""]
+    vw, vh, sr = streams(video)
+    audio = f"audio {sr} Hz" + (" (band-limited: use as foley guide, not as the master)" if sr and sr < 44100 else "") if sr else "no audio"
+    lines = ["# Take QA", "", f"File: `{video}`  ", f"Duration: {dur:.2f} s at {rate:g} fps; planned {p['duration_s']} s.  ",
+             f"Size: {vw}x{vh}; {audio}.", ""]
     lines += ["## Cuts", "", "| Planned (s) | Real (s) | Difference | Status |", "|---|---|---|---|"]
     used = set()
     failures = 0
@@ -149,6 +176,9 @@ def main():
     lines += ["", "## Frozen frames longer than 8 frames", ""]
     hs = holds(d, rate)
     lines += [f"- {a:.2f} to {b:.2f} s ({n} frames): needs a reason on the exposure sheet" for a, b, n in hs] or ["- none"]
+    lines += ["", "## Black frames", ""]
+    blacks = black_frames(fr, rate)
+    lines += [f"- {a:.2f} s ({n} frame(s)): check the seam; join on the shorter of stream and container" for a, n in blacks] or ["- none"]
     lines += ["", "## Audio drops below -38 LUFS momentary", ""]
     drops = audio_drops(video)
     lines += [f"- {a:.1f} s ({b:.1f} LUFS)" for a, b in drops] or ["- none"]
@@ -172,14 +202,15 @@ def main():
         items = []
         if x.get("face_visible"):
             f = x.get("face", {})
-            items.append(f"face: {'; '.join(f.get(k, '') for k in ('eyebrows', 'eyes', 'mouth') if f.get(k))}")
+            items.append(f"face: {'; '.join(f.get(k, '') for k in ('eyes', 'eyebrows', 'mouth') if f.get(k))}")
         for m in x.get("micro_actions", []):
             items.append(f"{m['hand']} hand {m['verb']} {m['object']}: five fingers, no fusion")
         if x.get("cut", {}).get("reason") and i < len(p["shots"]):
             items.append(f"cut happens {x['cut']['reason']}")
         lines.append(f"- [ ] shot {i} (`shot_{i:02d}.jpg`): " + " | ".join(items or ["readable action"]))
-    lines += ["", f"Automatic result: {'FAILED' if failures or hs or jumps else 'no alerts'} "
-              f"({failures} cut problem(s), {len(hs)} hold(s), {jumps} light jump(s)). Fix only the failed interval."]
+    lines += ["", f"Automatic result: {'FAILED' if failures or hs or jumps or blacks else 'no alerts'} "
+              f"({failures} cut problem(s), {len(hs)} hold(s), {len(blacks)} black run(s), {jumps} light jump(s)). "
+              "Fix only the failed interval."]
     with open(os.path.join(out_dir, "QA.md"), "w", encoding="utf-8") as fh:
         fh.write("\n".join(lines) + "\n")
     print("\n".join(lines))

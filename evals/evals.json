@@ -29,5 +29,53 @@
       "Does not regenerate the whole film for a local defect without a reason",
       "Asks for consent and states the cost before any paid regeneration"
     ]
+  },
+  {
+    "skills": ["hand-drawn-2d-animation"],
+    "query": "Generate shot 4 with first and last frame: the first frame is the boy alone on the shore, the last is him flying over the lake with his two companions.",
+    "files": [],
+    "expected_behavior": [
+      "Points out that the two frames disagree (companions absent in one, present in the other) and that this causes morphs and axis jumps",
+      "Proposes first frame only, or a split into two takes with frames that agree",
+      "Quotes the cost and waits for a yes before generating"
+    ]
+  },
+  {
+    "skills": ["hand-drawn-2d-animation"],
+    "query": "Use this frame I exported from the approved take as the start frame of the repair shot.",
+    "files": [],
+    "expected_behavior": [
+      "Warns that a frame exported from a generated video carries the platform watermark, which the model redraws",
+      "Rebuilds the frame as a clean still in the image tool before using it"
+    ]
+  },
+  {
+    "skills": ["hand-drawn-2d-animation"],
+    "query": "Put the tagline 'A gente cresce. A imaginação também.' over the packshot in the Seedance prompt.",
+    "files": [],
+    "expected_behavior": [
+      "Keeps the tagline out of the generation and adds it as editable text in the edit",
+      "Checks that the chosen font renders the accented capitals",
+      "Adds reading every word on screen letter by letter to the QA"
+    ]
+  },
+  {
+    "skills": ["hand-drawn-2d-animation"],
+    "query": "The 480p film is approved. Make it 1080p.",
+    "files": [],
+    "expected_behavior": [
+      "Separates the routes: draft mode if the surface exposes it, upscale with a test of the hardest seconds, regeneration in acts",
+      "Keeps the approved audio as the master and excludes the regenerated audio",
+      "Plans fidelity.py and a frame-accurate join, and quotes any paid step before running it"
+    ]
+  },
+  {
+    "skills": ["hand-drawn-2d-animation"],
+    "query": "Generate the film as three 10 second blocks, each with its own music.",
+    "files": [],
+    "expected_behavior": [
+      "Asks for no music inside the blocks and one continuous master track in the edit",
+      "Explains that separate generations return different mixes that a crossfade does not join"
+    ]
   }
 ]

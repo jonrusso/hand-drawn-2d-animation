@@ -4,7 +4,8 @@
 Usage:
   python3 project.py init PROJECT_FOLDER       # create the folder tree and manifest.json (never overwrites)
   python3 project.py context PROJECT_FOLDER    # rewrite CONTEXT.md from manifest.json
-  python3 project.py verify PROJECT_FOLDER     # probe and decode every deliverable; exits 1 on failure
+  python3 project.py verify PROJECT_FOLDER     # probe and decode every deliverable; exits 1 on failure.
+                                               # A deliverable may declare its own width, height and fps.
   python3 project.py cache-key SPEC.json       # sha256 of a canonical spec JSON (content hashes of all inputs)
 
 Python standard library, plus ffprobe/ffmpeg for verify.
@@ -68,7 +69,8 @@ def verify(root):
             if vids:
                 s = vids[0]
                 n, d = map(int, s["avg_frame_rate"].split("/"))
-                master = m["master"]
+                # a 1080p finish or a 9:16 reel declares its own size; the rest must match the master
+                master = {**m["master"], **{k: item[k] for k in ("width", "height", "fps") if isinstance(item, dict) and k in item}}
                 row["master_matches"] = (s["width"] == master["width"] and s["height"] == master["height"]
                                          and abs(n / d - master["fps"]) < .001)
                 if not row["master_matches"]:

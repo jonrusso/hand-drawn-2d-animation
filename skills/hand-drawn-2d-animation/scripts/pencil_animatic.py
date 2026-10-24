@@ -3,7 +3,7 @@
 
 Usage:
   python3 pencil_animatic.py film.mp4 depth.mp4 output.mp4 [--start 0] [--dur 30] [--test 13,18,24]
-                             [--lines lines.mp4] [--fps 12] [--style rough|test|animatic|isnet] [--model isnetis.onnx]
+                             [--lines lines.mp4] [--fps 12] [--style rough|test|animatic|isnet] [--model isnetis.onnx] [--keep-pink]
 
 - depth.mp4 is a depth-map video synced to the film (from any monocular video depth model). It decides what
   stays: near and mid planes (character, props, close leaves) stay drawn; the distant background fades into
@@ -131,9 +131,12 @@ def pencil_test(rgb, dep, paper_grain, lines):
     return np.clip(out, 0, 255).astype(np.uint8)
 
 
+KEEP_PINK = False  # --keep-pink; BOLHAO needs it for the bubble, a film with pink flowers or sunsets does not
+
+
 def pink_mask(hsv):
-    """Saturated pink areas (in the BOLHAO example, the bubble): always kept as part of the character."""
-    return (((hsv[..., 0] >= 140) | (hsv[..., 0] <= 8)) & (hsv[..., 1] > 35) & (hsv[..., 2] > 120))
+    """Saturated pink areas (in the BOLHAO example, the bubble), kept as part of the character with --keep-pink."""
+    return (((hsv[..., 0] >= 140) | (hsv[..., 0] <= 8)) & (hsv[..., 1] > 35) & (hsv[..., 2] > 120)) & KEEP_PINK
 
 
 def line_animatic(rgb, dep, lines):
@@ -255,7 +258,11 @@ def main():
                     help="rough = loose sketch; test = pencil test with toned set; animatic = line only, simple set; "
                          "isnet = line only with an isnet-anime character matte")
     ap.add_argument("--model", default="", help="path to isnetis.onnx (only for --style isnet)")
+    ap.add_argument("--keep-pink", action="store_true",
+                    help="keep saturated pink shapes as character (a pink bubble or prop the matte misses)")
     a = ap.parse_args()
+    global KEEP_PINK
+    KEEP_PINK = a.keep_pink
     if a.style == "isnet" and not (a.model and os.path.isfile(a.model)):
         print(ISNET_HELP)
         sys.exit(2)

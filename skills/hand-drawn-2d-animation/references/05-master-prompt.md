@@ -11,7 +11,18 @@ The video prompt is assembled from `plan.json` by `scripts/master_prompt.py buil
 6. **Shots.** For each: setup and move; action with counts; `Because X: first ..., then ..., then ...`; `On screen at end: ...`; `Cut to shot N as ...`.
 7. **Acting paragraph.** See [acting](04-acting.md).
 8. **Limits.** `No dialogue, speech or voice. No text or watermark. Water and bubble are soft drawn shapes. Same identity and proportions in every shot.`
-9. **Sound.** Ambience and contact sounds only; music goes in the edit.
+9. **Sound.** Ambience and contact sounds, ending in `No music.` A whole film in one pass may carry its own score instead (`"music_in_generation": true`): one pass gives one continuous score, which BOLHAO used as its master track. Separate blocks never do; their scores do not stitch.
+
+## Plan fields that change the prompt
+| Field | Default | Effect |
+|---|---|---|
+| `possessive` (plan) or `owner` (micro-action) | `His` | "Her right hand tears the wrapper once." |
+| `music_in_generation` | false | drops `No music.` from the sound line |
+| `use_timestamps` | false | adds `[0-6s]` ranges to each shot |
+| `max_reference_images` | none (warns above 9) | errors when the plan attaches more images than the surface takes |
+| `char_limit` | 4000 | errors above it; confirm the real limit on your surface |
+
+Storyboard keyframes must be one per shot: the prompt says "one per shot" and the checker refuses a different count.
 
 ## What the checker rejects
 - A shot with hands but no explicit finger count ("exactly five fingers on each hand, four fingers plus one thumb").
@@ -26,10 +37,15 @@ The video prompt is assembled from `plan.json` by `scripts/master_prompt.py buil
 It also warns on high shot density, micro-actions without counts, and micro-actions in wide shots.
 
 ## Timestamps
-Timestamps in the prompt ("0-3s: ...") are optional and off by default in the example. Some long-generation guides recommend contiguous whole-second ranges because, without them, action tends to bunch at the start. If the generator ignores the shot order, run an A/B: the same plan built with and without timestamps, and measure with `qa_take.py` which one lands the planned cuts.
+Timestamps in the prompt ("0-3s: ...") are off by default, and the evidence is split:
+- For: the approved BOLHAO take is a 30 s pass of a prompt with contiguous whole-second ranges, and long-generation guides recommend them because, without them, action bunches at the start.
+- Against: a note from the same production's short per-shot takes records that time ranges made actions alternate in turns, and the director's rule for those takes was no timestamps. That is why the default is off.
 
-## Example
-`assets/examples/bolhao_30s_plan.json` and the prompt it produces, `assets/examples/bolhao_30s_prompt.txt`: six shots, about 4,000 characters, passes the checker.
+Run the A/B before a long single generation: the same plan built with and without timestamps (two 15 s generations are enough), and keep the one whose cuts `qa_take.py` finds on time. Record the result in the manifest.
+
+## Examples
+- `assets/examples/bolhao_v03_integral_prompt.txt`: the v03 integral prompt published with the film. It is the prompt family that produced the approved take (the exact text of the approved revision is not in the project files). It uses time ranges, a generated score and the product shot inside the generation, and has 4,142 characters, so the 4,000 default of `char_limit` was not the generator's real limit.
+- `assets/examples/bolhao_30s_plan.json` and the prompt it builds, `assets/examples/bolhao_30s_prompt.txt`: the same story rewritten with this method, six shots, 3,996 characters, passes the checker. It has not been generated yet; treat it as the template, not as proof.
 
 ## Never in the prompt
 - Names of films, studios or directors. Describe the technique instead.

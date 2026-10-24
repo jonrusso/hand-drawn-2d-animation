@@ -4,7 +4,7 @@ description: Plans, prompts, generates and checks short 2D animated films that l
 license: Apache-2.0
 compatibility: Python 3.10+ and ffmpeg/ffprobe for the scripts. Pillow and numpy for image tools. Optional torch (sketch lines, depth) and onnxruntime (character mask). An image generator and a video generator (for example CapCut with Seedance) are needed for the generation steps.
 metadata:
-  version: "0.1.0"
+  version: "0.2.0"
   author: "russodev"
 ---
 
@@ -40,12 +40,16 @@ Load only the reference for the current step:
 2. **Five fingers, in words.** Every prompt that shows a hand says "exactly five fingers on each hand (four fingers plus one thumb), never four, never six". `master_prompt.py` rejects a plan without it.
 3. **Every face change has a cause and an order.** "Because X: first the eyes, then the eyebrows, then the mouth."
 4. **Every cut has a trigger.** A look, an action, a sound or an object filling the frame. "Exactly N shots, no other cuts."
-5. **Describe technique, never a film, studio or director.** Credits for inspiration live in the README and in [credits](references/13-credits-and-style.md), never in prompts.
+5. **Describe technique, never a film, studio or director.** Credits for inspiration live in the README and in [credits](references/13-credits-and-style.md), never in prompts. A character that reads as a famous one gets redesigned, not renamed.
 6. **Water, steam and bubbles are drawn.** Rounded shapes in 3 or 4 tones with an outline. Never glass, ice or photographic fluid.
-7. **Text, logos and packshots go in the edit,** never inside the generation.
-8. **Repair locally.** Never regenerate the whole film for one local defect.
-9. **Cost needs consent.** Quote the price and wait for an explicit yes before any paid image or video job. A job already submitted is polled, never resubmitted.
-10. **A file that exists is not a film that works.** Watch at full speed, then frame by frame at every cut, before saying it is done.
+7. **Typed text goes in the edit.** Titles, taglines, captions and CTA are editable text in the editor. A product label that already exists in a reference image can stay in the generation; check every letter. BOLHAO's generated tagline shipped misspelled ("tambên") through approval, finishing and master.
+8. **Keyframes are clean stills.** Make them in the image tool. Never use a frame exported from a generated video: it carries the platform watermark, and the model redraws it.
+9. **First and last frame must agree.** Same characters on the same sides, same scale, light and set. If they cannot agree, use the first frame only.
+10. **Repair locally.** Never regenerate the whole film for one local defect.
+11. **Cost needs consent.** Quote the price and wait for an explicit yes before any paid image or video job. A job already submitted is polled, never resubmitted. Tell a chat-driven generator to make one attempt and stop on error.
+12. **A file that exists is not a film that works.** Watch at full speed, then frame by frame at every cut, before saying it is done.
+
+What the BOLHAO example proves and what it does not: the approved 480p take is one 30 s pass of the integral v3 prompt, the one published with the film (`assets/examples/bolhao_v03_integral_prompt.txt`: whole-second time ranges, its own continuous score, the product shot inside the generation); the 1080p master is two 15 s regenerations of that take. `bolhao_30s_plan.json` is this method applied afterwards and has not been generated yet.
 
 ## Project state
 
@@ -66,8 +70,9 @@ All scripts are local and free. See [scripts/README.md](scripts/README.md).
 |---|---|
 | `master_prompt.py` | check a `plan.json`, build storyboard image prompts and the video master prompt |
 | `animatic.py` | storyboard frames to an animatic at exact shot durations |
-| `qa_take.py` | compare a generated take with the plan: cuts, frozen frames, audio drops, per-shot sheets |
+| `qa_take.py` | compare a generated take with the plan: cuts, frozen and black frames, audio drops and sample rate, per-shot sheets |
 | `fidelity.py` | confirm a 1080p finish still matches the approved draft |
+| `depth_map.py` | depth map of the finished film, restarted at every cut (Video Depth Anything Small) |
 | `timing_chart.py` | animated exposure sheet overlay (keys, breakdowns, frame ruler) |
 | `sketch_lines.py`, `pencil_animatic.py` | pencil animatic from a finished film (Anime2Sketch, isnet-anime) |
 | `breakdown_reel.py`, `lettering.py` | 9:16 breakdown reel with stacked bands, and animated lettering |

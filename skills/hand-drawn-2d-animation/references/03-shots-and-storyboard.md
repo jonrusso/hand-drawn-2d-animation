@@ -16,6 +16,8 @@ Target mix for six shots: 2 wide (place and arrival), 3 medium (action and hand 
 
 After a climax, a longer held shot of 6 to 8 s lets the moment land.
 
+These are planning targets, not limits. The approved BOLHAO take has seven shots: three under 2.5 s (the grab and a close insert of the same hands, cut on the action) and one continuous 15.6 s shot that carries the bridge, the flight, the pop and the fall in one camera move. Short shots hold when they continue one action across the cut; a long shot holds when the geography never changes inside it.
+
 ## 2. What every shot needs
 
 | Field | Example |
