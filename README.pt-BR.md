@@ -55,5 +55,7 @@ Feito com CapCut, o plugin do ChatGPT, Codex e Seedance, e com open source: Vide
 
 Feito por [@russodev](https://instagram.com/russodev), com Claude Code e Codex.
 
+Revisão de [@wanrleydesigner](https://www.instagram.com/wanrleydesigner), especialista em geração de imagem e vídeo generativo, cuja revisão de produção deu forma à v0.2.0.
+
 ## Licença
 Código: [Apache 2.0](LICENSE). Textos, prompts e imagens de exemplo: [CC BY 4.0](LICENSE-docs).

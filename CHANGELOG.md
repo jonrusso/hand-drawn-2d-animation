@@ -3,7 +3,7 @@
 All notable changes to this project are documented here. Format: [Keep a Changelog](https://keepachangelog.com), versioning: SemVer.
 
 ## [0.2.0] - 2026-10-24
-Review of the BOLHAO production files: every rule checked against what the film, the V1 corrections and the master QA prove.
+Review of the BOLHAO production files by [@wanrleydesigner](https://www.instagram.com/wanrleydesigner): every rule checked against what the film, the V1 corrections and the master QA prove.
 
 ### Added
 - `depth_map.py`: the Video Depth Anything Small pass used on BOLHAO, restarted at every cut, as a script.

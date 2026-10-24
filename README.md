@@ -103,5 +103,7 @@ Built with CapCut, the ChatGPT plugin, Codex and Seedance, and with open source:
 
 Made by [@russodev](https://instagram.com/russodev), with Claude Code and Codex.
 
+Reviewed by [@wanrleydesigner](https://www.instagram.com/wanrleydesigner), specialist in generative image and video, whose production review shaped v0.2.0.
+
 ## License
 Code: [Apache 2.0](LICENSE). Docs, prompts and example images: [CC BY 4.0](LICENSE-docs). Example images were generated with AI tools under human direction and are licensed to the extent they are copyrightable. Output from third-party services is subject to their terms.
