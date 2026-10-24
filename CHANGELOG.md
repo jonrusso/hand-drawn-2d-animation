@@ -2,6 +2,11 @@
 
 All notable changes to this project are documented here. Format: [Keep a Changelog](https://keepachangelog.com), versioning: SemVer.
 
+## [0.2.1] - 2026-10-24
+### Added
+- `TRIBUTE.md`: the skill is dedicated to Tyrus Wong, with his story, why the skill follows his work, how we keep that respectful, and where to learn more.
+- A dedication under the hero image in both READMEs.
+
 ## [0.2.0] - 2026-10-24
 Review of the BOLHAO production files by [@wanrleydesigner](https://www.instagram.com/wanrleydesigner): every rule checked against what the film, the V1 corrections and the master QA prove.
 

@@ -6,6 +6,8 @@
 
 ![Animatic a lápis ao lado do filme final](docs/images/pencil-to-final.gif)
 
+**Dedicado a Tyrus Wong (1910-2016).** As florestas que ele pintou para *Bambi* mostraram que aguadas suaves, poucos traços certeiros e muita atmosfera bastam para criar um mundo inteiro. Esta skill persegue essa sensação com ferramentas novas. [Conheça a história dele](TRIBUTE.md) (em inglês).
+
 </div>
 
 > Entra uma frase, sai um curta 2D com cara de desenhado à mão. Entrevista da história, fichas de personagem, storyboard, um prompt mestre, **uma geração** no CapCut com o Seedance, QA, e um animatic a lápis feito com ferramentas open source.
@@ -49,7 +51,7 @@ O que os scripts conferem antes de qualquer gasto (`master_prompt.py check`): ci
 O caso completo, com custos e todos os erros que aconteceram: [examples/bolhao/CASE_STUDY.md](examples/bolhao/CASE_STUDY.md).
 
 ## Agradecimentos
-O visual desta skill foi estudado a partir da obra de **Tyrus Wong**, cujas florestas pintadas definiram o visual de *Bambi* (1942), da Walt Disney Animation Studios, e dos fundos pintados à mão de *Branca de Neve e os Sete Anões* (1937), da Disney. Eles estão creditados aqui porque é de onde vem esse estilo. Nenhum quadro, personagem ou nome entra nos prompts, e este projeto não tem vínculo nem aval da Disney. O repositório não contém nenhuma arte do Tyrus Wong ou da Disney; as licenças daqui valem só para o nosso código, textos e imagens de exemplo.
+O visual desta skill foi estudado a partir da obra de **Tyrus Wong**, cujas florestas pintadas definiram o visual de *Bambi* (1942), da Walt Disney Animation Studios, e dos fundos pintados à mão de *Branca de Neve e os Sete Anões* (1937), da Disney. Eles estão creditados aqui porque é de onde vem esse estilo; a skill é dedicada a ele ([TRIBUTE.md](TRIBUTE.md)). Nenhum quadro, personagem ou nome entra nos prompts, e este projeto não tem vínculo nem aval da Disney. O repositório não contém nenhuma arte do Tyrus Wong ou da Disney; as licenças daqui valem só para o nosso código, textos e imagens de exemplo.
 
 Feito com CapCut, o plugin do ChatGPT, Codex e Seedance, e com open source: Video Depth Anything (Small, Apache 2.0), Anime2Sketch (MIT), anime-segmentation / isnet-anime (Apache 2.0), PyTorch, ONNX Runtime, OpenCV, FFmpeg, Pillow, NumPy.
 

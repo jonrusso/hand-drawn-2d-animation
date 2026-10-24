@@ -4,7 +4,7 @@ description: Plans, prompts, generates and checks short 2D animated films that l
 license: Apache-2.0
 compatibility: Python 3.10+ and ffmpeg/ffprobe for the scripts. Pillow and numpy for image tools. Optional torch (sketch lines, depth) and onnxruntime (character mask). An image generator and a video generator (for example CapCut with Seedance) are needed for the generation steps.
 metadata:
-  version: "0.2.0"
+  version: "0.2.1"
   author: "russodev"
 ---
 
