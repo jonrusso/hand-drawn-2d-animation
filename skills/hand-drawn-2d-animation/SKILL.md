@@ -42,7 +42,7 @@ Load only the reference for the current step:
 4. **Every cut has a trigger.** A look, an action, a sound or an object filling the frame. "Exactly N shots, no other cuts."
 5. **Describe technique, never a film, studio or director.** Credits for inspiration live in the README and in [credits](references/13-credits-and-style.md), never in prompts. A character that reads as a famous one gets redesigned, not renamed.
 6. **Water, steam and bubbles are drawn.** Rounded shapes in 3 or 4 tones with an outline. Never glass, ice or photographic fluid.
-7. **Typed text goes in the edit.** Titles, taglines, captions and CTA are editable text in the editor. A product label that already exists in a reference image can stay in the generation; check every letter. BOLHAO's generated tagline shipped misspelled ("tambên") through approval, finishing and master.
+7. **Typed text goes in the edit.** Titles, taglines, captions and CTA are editable text in the editor. A product label that already exists in a reference image can stay in the generation; check every letter. A generated tagline can misspell a word and pass every review.
 8. **Keyframes are clean stills.** Make them in the image tool. Never use a frame exported from a generated video: it carries the platform watermark, and the model redraws it.
 9. **First and last frame must agree.** Same characters on the same sides, same scale, light and set. If they cannot agree, use the first frame only.
 10. **Repair locally.** Never regenerate the whole film for one local defect.

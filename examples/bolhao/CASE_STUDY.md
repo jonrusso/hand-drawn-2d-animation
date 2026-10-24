@@ -30,7 +30,7 @@
 | Paper left on the ground, hands missing while parting leaves | written as explicit micro-actions with hand, object, verb and count |
 | A 16:9 request failing repeatedly (credits returned) | one attempt with Auto ratio succeeded; record the ratio actually used |
 | One black frame at the seam of the two acts | join by frame count, never by container duration; `qa_take.py` now lists black frames |
-| The generated tagline shipped misspelled ("tambên" for "também") through approval, finishing and master | typed text always goes in the edit as editable text; QA reads every word on screen against the script |
+| The generated end tagline came out with a misspelled word, and nobody caught it before the master | typed text always goes in the edit as editable text; QA reads every word on screen against the script |
 | Pencil animatic too faded, too detailed, too many drawings | simplify the shot first, extract lines, mask the character, hold drawings at 12 per second |
 | Labels cut off on phones | Instagram Reels crops about 97 px each side on tall screens; keep text between x = 120 and 960 |
 | A soft fade into the CTA felt weak | hard cut on the story beat (the bubble pops), extend after the cut instead |

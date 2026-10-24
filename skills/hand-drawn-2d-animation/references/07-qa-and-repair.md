@@ -35,7 +35,7 @@ Each row is a symptom seen on screen, its cause and the fix that worked or was p
 
 | Symptom | Cause | Fix |
 |---|---|---|
-| The end tagline reads "A imaginação tambên" instead of "também", in the approved draft, the 1080p regeneration and the delivered master | the generator drew the tagline itself, and nobody read it letter by letter | typed text in the edit; in QA, read every word on screen against the script |
+| A word in the generated end tagline is misspelled, and the error survives draft, regeneration and master | the generator drew the tagline itself, and nobody read it letter by letter | typed text in the edit; in QA, read every word on screen against the script |
 | Bubble deflates instead of popping | the beat was not written as a pop | a 4 s localized repair: contact with a branch, pop, reaction, fall, drawn splash |
 | One-frame black gap where two acts join | the video stream was shorter than its container | join on the shorter of the two; `qa_take.py` lists black frames |
 | One second of morph, then the hero and companions swap sides | first and last frame disagree (companions present in one, absent in the other) | split the take; companions present and on the same side in both frames |
